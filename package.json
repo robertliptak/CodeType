@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run client\"",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "lint": "eslint ./client/src --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
-    "nodemon": "^2.0.22"
+    "eslint": "^8.38.0",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.4"
   }
 }

@@ -1,12 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
-  );
+  const [count, setCount] = useState(0);
+
+  return <div className="App"></div>;
 }
 
 export default App;
