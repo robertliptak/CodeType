@@ -23,8 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-#dotenv files
+# dotenv files
 .env
 
-#Mac files
+# Mac files
 .DS_Store
+
+#Dependencies 
+node_modules
