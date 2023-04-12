@@ -31,3 +31,6 @@ dist-ssr
 
 #Dependencies 
 node_modules
+
+#Code customizes
+.prettierrc
