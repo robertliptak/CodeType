@@ -1,3 +1,6 @@
-# About
+# CodeType
 
-CodeType is a typing test application, made by me, Robert. The main aim of this app is to provide modern design for programmers wanting to improve their typing speed and accuracy. Not only coders but also ordinary users are able to enjoy typing tests with optional modes.
+## CodeType is a typing application designed to improve the typing speed and accuracy of programmers but also common users.
+By instant feedback users have complete vision of WPM, typos and characters the have typed. Every taken test is saved in the profile of user and shown in great detial. Modern design along with many features creates great experience. Here are some of the key features:
+
+*CodeType
