@@ -7,8 +7,10 @@ const Login: React.FC = () => {
       <div>
         <h1 className="text-main-white">Hello from Login!</h1>
         <p className="text-main-white">Hello from Login!</p>
-        <input type="text" />
-        <button type="submit">Submit</button>
+        <input type="text" placeholder="Email" />
+        <button className="filled_button" type="submit">
+          Submit
+        </button>
       </div>
     </AuthTemplate>
   );
