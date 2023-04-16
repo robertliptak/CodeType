@@ -8,6 +8,9 @@
     "airbnb",
     "airbnb-typescript",
     "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
   ],
   "overrides": [],
@@ -17,10 +20,18 @@
     "sourceType": "module",
     "project": ["./client/tsconfig.json", "./server/tsconfig.json"]
   },
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
   "rules": {
     "quotes": ["error", "double"],
     "react/react-in-jsx-scope": ["off"],
-    "no-console": "off"
+    "react/function-component-definition": ["off"],
+    "no-console": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

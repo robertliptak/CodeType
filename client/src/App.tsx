@@ -1,18 +1,18 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/login";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1 className="text-main-green font-bold text-6xl">Hello</h1>
-      <br />
-      <h1 className="text-main-red font-bold text-6xl">Hello</h1>
-      <br />
-      <h1 className="text-main-blue font-bold text-6xl">Hello</h1>
-      <br />
-      <h1 className="text-main-white font-bold text-6xl">Hello</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/login" Component={Login} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

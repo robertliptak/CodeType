@@ -6,7 +6,7 @@ const app = express();
 dotenv.config({ path: "../.env" });
 
 const PORT: number = parseInt(process.env.PORT ?? "3000", 10);
-const dbURL: string = process.env.DB_CONNECTION_URL!;
+const dbURL: string = process.env.DB_CONNECTION_URL || "";
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, world!");
