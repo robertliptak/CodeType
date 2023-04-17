@@ -1,8 +1,11 @@
 import express, { Request, Response } from "express";
 import mongoose, { ConnectOptions } from "mongoose";
+import cors from "cors";
 import dotenv from "dotenv";
 
 const app = express();
+app.use(express.json());
+app.use(cors());
 dotenv.config({ path: "../.env" });
 
 const PORT: number = parseInt(process.env.PORT ?? "3000", 10);
@@ -28,3 +31,8 @@ mongoose
   .connect(dbURL, options)
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.error("Error connecting to MongoDB:", error));
+
+app.post("/register", (req, res) => {
+  const userData = req.body;
+  res.json({ message: "Data received successfully", userData });
+});
