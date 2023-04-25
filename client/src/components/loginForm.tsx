@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUser, loginUser } from "../api/auth";
+import { loginUser } from "../api/auth";
 
 const LoginForm: React.FC = () => {
   const [loginData, setLoginData] = useState({
