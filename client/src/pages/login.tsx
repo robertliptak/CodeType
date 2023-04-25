@@ -1,16 +1,12 @@
 import React from "react";
 import AuthTemplate from "../templates/authTemplate";
+import LoginForm from "../components/loginForm";
 
 const Login: React.FC = () => {
   return (
     <AuthTemplate>
       <div>
-        <h1 className="text-main-white">Hello from Login!</h1>
-        <p className="text-main-white">Hello from Login!</p>
-        <input type="text" placeholder="Email" />
-        <button className="filled_button" type="submit">
-          Submit
-        </button>
+        <LoginForm />
       </div>
     </AuthTemplate>
   );

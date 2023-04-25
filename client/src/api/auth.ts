@@ -1,9 +1,14 @@
 import axios from "./axios";
-import { RegisterData } from "../types/auth";
+import { RegistrationData, LoginData } from "../types/auth";
 
-const createUser = async (userData: RegisterData): Promise<RegisterData> => {
-  const response = await axios.post("/register", userData);
+export const createUser = async (
+  userData: RegistrationData,
+): Promise<RegistrationData> => {
+  const response = await axios.post("/registration", userData);
   return response.data;
 };
 
-export default createUser;
+export const loginUser = async (userData: LoginData): Promise<LoginData> => {
+  const response = await axios.post("/login", userData);
+  return response.data;
+};

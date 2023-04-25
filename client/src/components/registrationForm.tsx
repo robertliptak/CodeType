@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import createUser from "../api/auth";
+import { createUser } from "../api/auth";
 
-const RegisterForm: React.FC = () => {
-  const [registerData, setRegisterData] = useState({
+const RegistrationForm: React.FC = () => {
+  const [registrationData, setRegistrationData] = useState({
     username: "",
     email: "",
     password: "",
@@ -10,13 +10,16 @@ const RegisterForm: React.FC = () => {
   });
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
+    setRegistrationData({
+      ...registrationData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const user = await createUser(registerData);
+      const user = await createUser(registrationData);
       console.log("User created:", user);
     } catch (err) {
       console.error(err);
@@ -32,28 +35,28 @@ const RegisterForm: React.FC = () => {
           type="text"
           placeholder="Username"
           name="username"
-          value={registerData.username}
+          value={registrationData.username}
           onChange={changeHandler}
         />
         <input
           type="email"
           placeholder="Email"
           name="email"
-          value={registerData.email}
+          value={registrationData.email}
           onChange={changeHandler}
         />
         <input
           type="password"
           placeholder="Password"
           name="password"
-          value={registerData.password}
+          value={registrationData.password}
           onChange={changeHandler}
         />
         <input
           type="password"
           placeholder="Verify password"
           name="confirmedPassword"
-          value={registerData.confirmedPassword}
+          value={registrationData.confirmedPassword}
           onChange={changeHandler}
         />
         <button type="submit" className="filled_button my-6">
@@ -64,4 +67,4 @@ const RegisterForm: React.FC = () => {
   );
 };
 
-export default RegisterForm;
+export default RegistrationForm;

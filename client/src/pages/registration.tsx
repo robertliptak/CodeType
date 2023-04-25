@@ -1,15 +1,15 @@
 import React from "react";
 import AuthTemplate from "../templates/authTemplate";
-import RegisterForm from "../components/registerForm";
+import RegistrationForm from "../components/registrationForm";
 
-const Register: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <AuthTemplate>
       <div>
-        <RegisterForm />
+        <RegistrationForm />
       </div>
     </AuthTemplate>
   );
 };
 
-export default Register;
+export default SignUp;
