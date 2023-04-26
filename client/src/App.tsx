@@ -7,15 +7,10 @@ import Registration from "./pages/registration";
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Link to="/registration">Registration</Link>
-        <br />
-        <Link to="/login">Login</Link>
-        <Routes>
-          <Route path="/login" Component={Login} />
-          <Route path="/registration" Component={Registration} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/login" Component={Login} />
+        <Route path="/registration" Component={Registration} />
+      </Routes>
     </Router>
   );
 };

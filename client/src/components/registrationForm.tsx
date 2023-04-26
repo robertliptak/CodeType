@@ -27,7 +27,7 @@ const RegistrationForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="auth_container">
       <h1>Create an account</h1>
       <p className="my-4">Please enter your details</p>
       <form onSubmit={submitHandler}>
@@ -35,6 +35,7 @@ const RegistrationForm: React.FC = () => {
           type="text"
           placeholder="Username"
           name="username"
+          className="hovno"
           value={registrationData.username}
           onChange={changeHandler}
         />

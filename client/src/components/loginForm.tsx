@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="auth_container">
       <h1>Login</h1>
       <p className="my-4">Please enter your details</p>
       <form onSubmit={submitHandler}>
