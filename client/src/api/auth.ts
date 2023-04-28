@@ -1,14 +1,14 @@
 import axios from "./axios";
-import { RegistrationData, LoginData } from "../types/auth";
+import { IRegistration, ILogin } from "../types/auth";
 
 export const createUser = async (
-  userData: RegistrationData,
-): Promise<RegistrationData> => {
+  userData: IRegistration,
+): Promise<IRegistration> => {
   const response = await axios.post("/registration", userData);
   return response.data;
 };
 
-export const loginUser = async (userData: LoginData): Promise<LoginData> => {
+export const loginUser = async (userData: ILogin): Promise<ILogin> => {
   const response = await axios.post("/login", userData);
   return response.data;
 };
