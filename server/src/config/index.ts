@@ -1,8 +1,8 @@
 import express from "express";
-import mongoose, { ConnectOptions } from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import registrationRouter from "../api/routes/registration";
+import connectToMongoDB from "../db/mongoDB";
 
 dotenv.config({ path: "../.env" });
 
@@ -14,19 +14,8 @@ app.use(express.json());
 app.use(cors());
 app.use("", registrationRouter);
 
+connectToMongoDB(dbURL);
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
-
-const options: ConnectOptions & {
-  useNewUrlParser: boolean;
-  useUnifiedTopology: boolean;
-} = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-
-mongoose
-  .connect(dbURL, options)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("Error connecting to MongoDB:", error));
