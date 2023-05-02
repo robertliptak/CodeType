@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { loginUser } from "../api/auth";
 
 const LoginForm: React.FC = () => {
@@ -6,6 +8,8 @@ const LoginForm: React.FC = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData({
@@ -37,7 +41,7 @@ const LoginForm: React.FC = () => {
           onChange={changeHandler}
         />
         <input
-          type="password"
+          type={showPassword ? "password" : "text"}
           placeholder="Password"
           name="password"
           value={loginData.password}
@@ -46,6 +50,18 @@ const LoginForm: React.FC = () => {
         <button type="submit" className="filled_button my-6">
           Sign in
         </button>
+        <button
+          type="button"
+          onClick={() => setShowPassword((prevState) => !prevState)}
+        >
+          {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+        </button>
+        <p>
+          Don&apos;t have an account yet?
+          <Link className="auth_link" to="/registration">
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

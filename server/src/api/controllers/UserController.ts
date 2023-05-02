@@ -3,8 +3,6 @@ import { IUser } from "../../types/auth";
 import User from "../../db/models/user.schema";
 import userValidationSchema from "../middlewares/authMiddlewares";
 
-//  add logic for handling error with unique username/email
-
 const createUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { username, email, password, confirmedPassword } = req.body;
@@ -28,9 +26,17 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
 
     const user: IUser = new User({ username, email, password });
     await user.save();
-    res.status(201).json({ message: "User created successfully!" });
-  } catch (error) {
-    res.status(500).json({ message: "Error creating user", error });
+    res.status(201).json({
+      message: "User created successfully!",
+      userData: { username, email, password },
+    });
+  } catch (error: any) {
+    if (error.code === 11000) {
+      const fieldName = Object.keys(error.keyPattern)[0];
+      res.status(400).json({ message: `${fieldName} already exists` });
+    } else {
+      res.status(500).json({ message: "Error creating user", error });
+    }
   }
 };
 

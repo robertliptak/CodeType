@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { createUser } from "../api/auth";
 
 const RegistrationForm: React.FC = () => {
@@ -7,6 +8,10 @@ const RegistrationForm: React.FC = () => {
     email: "",
     password: "",
     confirmedPassword: "",
+  });
+  const [errorMessage, setErrorMessage] = useState({
+    showError: false,
+    errorContent: null,
   });
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,11 +23,22 @@ const RegistrationForm: React.FC = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setErrorMessage(() => ({
+      showError: false,
+      errorContent: null,
+    }));
+
     try {
       const user = await createUser(registrationData);
       console.log("User created:", user);
-    } catch (err) {
-      console.error(err);
+    } catch (err: any) {
+      const error = err.response.data.message || "Unknown error occurred";
+      console.log(error);
+      setErrorMessage(() => ({
+        showError: true,
+        errorContent: error,
+      }));
     }
   };
 
@@ -63,6 +79,13 @@ const RegistrationForm: React.FC = () => {
         <button type="submit" className="filled_button my-6">
           Sign up
         </button>
+        {errorMessage.showError && <p>{errorMessage.errorContent}</p>}
+        <p>
+          Already have an account?{" "}
+          <Link className="auth_link" to="/login">
+            Log in
+          </Link>
+        </p>
       </form>
     </div>
   );

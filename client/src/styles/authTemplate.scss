@@ -85,4 +85,9 @@ $light-gray: #3a3a3a;
     border: 1px solid $light-gray;
     border-radius: 20px;
   }
+
+  .auth_link {
+    text-decoration: underline;
+    color: $main-blue;
+  }
 }
