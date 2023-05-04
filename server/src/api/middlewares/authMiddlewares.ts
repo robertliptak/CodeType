@@ -16,14 +16,15 @@ const userValidationSchema = Joi.object({
   password: Joi.string()
     .min(8)
     .max(64)
-    .pattern(/^(?=.*\d)[A-Za-z\d@$!%*?&]*$/)
+    .regex(/^(?=.*\d)(?=.*[A-Z])[A-Za-z\d@$!%*?&]*$/)
     .required()
     .messages({
       "string.base": "Password should be a string",
       "string.empty": "Password is required",
       "string.min": "Password must be at least 8 characters long",
       "string.max": "Password cannot be longer than 64 characters",
-      "string.pattern.base": "Password must contain at least one number",
+      "string.pattern.base":
+        "Password must contain at least 1 capital letter and 1 number",
     }),
 });
 
