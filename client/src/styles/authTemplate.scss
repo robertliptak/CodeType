@@ -54,8 +54,12 @@ $light-gray: #3a3a3a;
     outline: none;
   }
 
-  .hovno:-internal-autofill-selected {
-    background-color: transparent !important;
+  input.is_error {
+    border-color: $main-red;
+  }
+
+  input.is_valid {
+    border-color: $main-green;
   }
 
   .filled_button {
@@ -67,6 +71,11 @@ $light-gray: #3a3a3a;
     padding-top: 8px;
     padding-bottom: 8px;
     border-radius: 100px;
+  }
+
+  .filled_button:disabled {
+    background-color: $light-gray;
+    color: $main-blue;
   }
 
   .filled_button:focus {
