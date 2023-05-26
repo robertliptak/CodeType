@@ -1,7 +1,11 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import registrationRouter from "../api/routes/registration";
+import {
+  emailValidation,
+  registrationRouter,
+  usernameValidation,
+} from "../api/routes/registration";
 import connectToMongoDB from "../db/mongoDB";
 
 dotenv.config({ path: "../.env" });
@@ -13,6 +17,8 @@ const dbURL: string = process.env.DB_CONNECTION_URL || "";
 app.use(express.json());
 app.use(cors());
 app.use("", registrationRouter);
+app.use("", usernameValidation);
+app.use("", emailValidation);
 
 connectToMongoDB(dbURL);
 

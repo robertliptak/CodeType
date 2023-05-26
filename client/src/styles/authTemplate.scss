@@ -1,9 +1,12 @@
-$main-white: #f5f5f5;
+$main-white: #e0e0e0;
+$dark-white: #c0c0c0;
 $main-red: #ff6961;
 $main-green: #77dd77;
-$main-blue: #aec6cf;
+$main-blue: #87cefa;
 $main-gray: #2b2b2b;
 $light-gray: #3a3a3a;
+$lighter-gray: #666666;
+$dark-gray: #181818;
 
 .authWrapper {
   height: 100vh;
@@ -11,40 +14,70 @@ $light-gray: #3a3a3a;
   justify-content: center;
   align-items: center;
 
-  div {
+  .auth_container {
+    min-width: 450px;
+    max-width: 500px;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    padding-bottom: 1.2rem;
+    padding-top: 0.8rem;
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    border: 1px solid $dark-gray;
+    border-radius: 20px;
+    background-color: $light-gray;
+  }
+
+  .input_container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .component_container {
+    width: 100%;
   }
 
   h1 {
     font-weight: 700;
-    font-size: 34px;
+    font-size: 30px;
     color: $main-white;
   }
 
   p {
     font-weight: 400;
-    font-size: 18px;
-    color: $main-white;
+    font-size: 14px;
+    color: $dark-white;
   }
 
   input {
+    width: 100%;
     color: $main-white;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     border: 1px solid;
-    border-color: $main-white;
-    background-color: $main-gray;
+    border-color: $lighter-gray;
+    background-color: transparent !important;
+    caret-color: $main-blue;
+    transition: border-color 0.2s ease;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $light-gray inset !important;
+    -webkit-text-fill-color: $main-white !important;
   }
 
   input::placeholder {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 400;
     opacity: 0.8;
     color: $main-white;
@@ -52,6 +85,16 @@ $light-gray: #3a3a3a;
 
   input:focus {
     outline: none;
+    border-color: $main-blue;
+    background-color: transparent !important;
+  }
+
+  input.autocomplete-selected {
+    background-color: transparent;
+  }
+
+  input[type="password"] {
+    font-weight: 700;
   }
 
   input.is_error {
@@ -62,24 +105,12 @@ $light-gray: #3a3a3a;
     border-color: $main-green;
   }
 
-  .filled_button {
-    background-color: #aec6cf;
-    color: #2b2b2b;
-    border: none;
-    font-size: 18px;
+  label {
+    font-size: 15px;
+    color: $main-white;
     font-weight: 700;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 100px;
-  }
-
-  .filled_button:disabled {
-    background-color: $light-gray;
-    color: $main-blue;
-  }
-
-  .filled_button:focus {
-    outline: none;
+    display: flex;
+    margin-bottom: 0.6rem;
   }
 
   form {
@@ -87,16 +118,51 @@ $light-gray: #3a3a3a;
     flex-direction: column;
   }
 
-  .auth_container {
-    max-width: 500px;
+  .star {
+    color: $main-blue;
+  }
+
+  .filled_button {
     width: 100%;
-    padding: 2rem;
-    border: 1px solid $light-gray;
-    border-radius: 20px;
+    background-color: transparent;
+    color: $main-blue;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    border: 1px solid $main-blue;
+    border-radius: 100px;
+  }
+
+  .filled_button:hover {
+    background-color: $main-blue;
+    color: $main-gray;
+    transition: all 0.25s;
+  }
+
+  .filled_button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  .filled_button:focus {
+    outline: none;
   }
 
   .auth_link {
     text-decoration: underline;
     color: $main-blue;
+  }
+
+  #username-tooltip,
+  #email-tooltip,
+  #password-tooltip,
+  #confirmedPassword-tooltip,
+  #button-tooltip {
+    font-size: 15px;
+    color: $main-white;
+    max-width: 20rem;
   }
 }

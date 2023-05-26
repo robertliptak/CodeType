@@ -28,7 +28,7 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", function (next) {
+userSchema.pre("save", function preSave(next) {
   const currentDate = new Date();
   this.created_at = new Date(
     currentDate.getTime() - currentDate.getTimezoneOffset() * 60000,
