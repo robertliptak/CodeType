@@ -156,6 +156,21 @@ $dark-gray: #181818;
     color: $main-blue;
   }
 
+  .show_password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .show_password_icon {
+    color: $main-blue;
+    font-size: 20px;
+  }
+
   #username-tooltip,
   #email-tooltip,
   #password-tooltip,

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import { loginUser } from "../api/auth";
 
 const LoginForm: React.FC = () => {
@@ -9,7 +11,7 @@ const LoginForm: React.FC = () => {
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData({
@@ -28,41 +30,79 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  const disabledButton = () => {
+    return !loginData.email || !loginData.password;
+  };
+
   return (
     <div className="auth_container">
-      <h1>Login</h1>
-      <p className="my-4">Please enter your details</p>
-      <form onSubmit={submitHandler}>
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={loginData.email}
-          onChange={changeHandler}
-        />
-        <input
-          type={showPassword ? "password" : "text"}
-          placeholder="Password"
-          name="password"
-          value={loginData.password}
-          onChange={changeHandler}
-        />
-        <button type="submit" className="filled_button my-6">
+      <div className="component_container">
+        <h1>Login</h1>
+      </div>
+      <div className="component_container mb-6">
+        <p>Please enter your details:</p>
+      </div>
+      <div className="component_container">
+        <form onSubmit={submitHandler}>
+          <div className="input_container">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Enter email"
+              name="email"
+              id="email"
+              value={loginData.email}
+              onChange={changeHandler}
+            />
+          </div>
+          <div className="input_container">
+            <label htmlFor="password">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "password" : "text"}
+                placeholder="Enter password"
+                name="password"
+                id="password"
+                value={loginData.password}
+                onChange={changeHandler}
+              />
+              <button
+                type="button"
+                className="show_password"
+                onClick={() => setShowPassword((prevState) => !prevState)}
+              >
+                {showPassword ? (
+                  <AiOutlineEye className="show_password_icon" />
+                ) : (
+                  <AiOutlineEyeInvisible className="show_password_icon" />
+                )}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        className="component_container mb-2 mt-4"
+        data-tooltip-id="button-tooltip"
+        data-tooltip-content="Please fill in all required fields"
+      >
+        <button
+          type="submit"
+          className="filled_button"
+          disabled={disabledButton()}
+        >
           Sign in
         </button>
-        <button
-          type="button"
-          onClick={() => setShowPassword((prevState) => !prevState)}
-        >
-          {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-        </button>
-        <p>
-          Don&apos;t have an account yet?
+        {disabledButton() && <Tooltip id="button-tooltip" place="right" />}
+      </div>
+      <div className="component_container">
+        <p className="text-center">
+          Don&apos;t have an account yet?&nbsp;
           <Link className="auth_link" to="/registration">
             Sign up
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 };
