@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { createUser } from "../api/auth";
@@ -14,8 +14,11 @@ import Spinner from "./spinner";
 import fieldBlurHandler from "../controllers/registrationValidations/fieldBlurHandler";
 import fieldFocusHandler from "../controllers/registrationValidations/fieldFocusHandler";
 import passwordChangeHandler from "../controllers/registrationValidations/passwordChangeHandler";
+import PageSpinner from "./pageSpinner";
 
 const RegistrationForm: React.FC = () => {
+  const [pageLoading, setPageLoading] = useState(false);
+
   const [backendErrorMessage, setbackendErrorMessage] = useState({
     showError: false,
     errorContent: null,
@@ -51,6 +54,8 @@ const RegistrationForm: React.FC = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   const formik = useFormik<IRegistration>({
     initialValues: {
       username: "",
@@ -70,11 +75,14 @@ const RegistrationForm: React.FC = () => {
     validationSchema: registrationValidationSchema,
     onSubmit: async (values) => {
       try {
+        setPageLoading(true);
         const user = await createUser(values);
         setbackendErrorMessage(() => ({
           showError: false,
           errorContent: null,
         }));
+        setPageLoading(false);
+        navigate("/");
         console.log("User created:", user);
       } catch (err: any) {
         console.log(err);
@@ -106,6 +114,7 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <div className="auth_container">
+      {pageLoading && <PageSpinner />}
       <div className="component_container ">
         <h1>Sign Up</h1>
       </div>
@@ -277,9 +286,13 @@ const RegistrationForm: React.FC = () => {
           </Link>
         </p>
       </div>
-      <div className="component_container">
+      <div className="component_container mt-3">
         {backendErrorMessage.showError && (
-          <p>{backendErrorMessage.errorContent}</p>
+          <div className="backend_error">
+            <p className="backend_error_message">
+              {backendErrorMessage.errorContent}
+            </p>
+          </div>
         )}
       </div>
     </div>

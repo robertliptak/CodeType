@@ -171,6 +171,21 @@ $dark-gray: #181818;
     font-size: 20px;
   }
 
+  .backend_error {
+    text-align: center;
+    border: 1px solid $main-red;
+    border-radius: 10px;
+    padding: 6px 10px;
+    word-wrap: break-word;
+  }
+
+  .backend_error_message {
+    color: $main-red;
+    font-weight: 700;
+    font-size: 16px;
+    word-break: break-all;
+  }
+
   #username-tooltip,
   #email-tooltip,
   #password-tooltip,
