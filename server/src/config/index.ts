@@ -7,6 +7,7 @@ import {
   usernameValidation,
 } from "../api/routes/registration";
 import connectToMongoDB from "../db/mongoDB";
+import loginRouter from "../api/routes/login";
 
 dotenv.config({ path: "../.env" });
 
@@ -17,6 +18,7 @@ const dbURL: string = process.env.DB_CONNECTION_URL || "";
 app.use(express.json());
 app.use(cors());
 app.use("", registrationRouter);
+app.use("", loginRouter);
 app.use("", usernameValidation);
 app.use("", emailValidation);
 

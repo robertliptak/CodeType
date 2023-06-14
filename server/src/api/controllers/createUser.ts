@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { IUser } from "../../types/auth";
 import User from "../../db/models/user.schema";
-import userValidationSchema from "../middlewares/registrationMiddleware";
+import userValidationSchema from "../middlewares/registrationSchema";
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
   try {
