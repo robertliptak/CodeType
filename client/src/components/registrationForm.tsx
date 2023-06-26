@@ -6,6 +6,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import { createUser } from "../api/auth";
 import registrationValidationSchema from "../validation/registrationSchema";
 import {
+  IRegistrationBackendErrors,
   IRegistration,
   IRegistrationFormErrors,
   IRegistrationStates,
@@ -19,9 +20,9 @@ import PageSpinner from "./pageSpinner";
 const RegistrationForm: React.FC = () => {
   const [pageLoading, setPageLoading] = useState(false);
 
-  const [backendErrorMessage, setbackendErrorMessage] = useState({
-    showError: false,
-    errorContent: null,
+  const [backendError, setBackendError] = useState<IRegistrationBackendErrors>({
+    isError: false,
+    errorMessage: undefined,
   });
 
   const [validationState, setValidationState] = useState<IRegistrationStates>({
@@ -77,9 +78,9 @@ const RegistrationForm: React.FC = () => {
       try {
         setPageLoading(true);
         const user = await createUser(values);
-        setbackendErrorMessage(() => ({
-          showError: false,
-          errorContent: null,
+        setBackendError(() => ({
+          isError: false,
+          errorMessage: undefined,
         }));
         setPageLoading(false);
         navigate("/");
@@ -89,9 +90,9 @@ const RegistrationForm: React.FC = () => {
 
         const error = err.response.data.message || "Unknown error occurred";
         console.log(error);
-        setbackendErrorMessage(() => ({
-          showError: true,
-          errorContent: error,
+        setBackendError(() => ({
+          isError: true,
+          errorMessage: error,
         }));
       }
     },
@@ -287,11 +288,9 @@ const RegistrationForm: React.FC = () => {
         </p>
       </div>
       <div className="component_container mt-3">
-        {backendErrorMessage.showError && (
+        {backendError.isError && (
           <div className="backend_error">
-            <p className="backend_error_message">
-              {backendErrorMessage.errorContent}
-            </p>
+            <p className="backend_error_message">{backendError.errorMessage}</p>
           </div>
         )}
       </div>

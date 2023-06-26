@@ -85,8 +85,8 @@ $dark-gray: #181818;
 
   input:focus {
     outline: none;
-    border-color: $main-blue;
-    background-color: transparent !important;
+    border-color: $main-blue !important;
+    background-color: transparent;
   }
 
   input.autocomplete-selected {

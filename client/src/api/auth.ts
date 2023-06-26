@@ -14,10 +14,11 @@ export const createUser = async (userData: IRegistration) => {
 export const loginUser = async (userData: ILogin) => {
   try {
     const response = await axios.post("/login", userData);
-    return response.data;
-  } catch (error) {
-    console.log("From auth.ts in client api", error);
-    return error;
+    const { accessToken, user } = response.data;
+    return { accessToken, user, isError: false };
+  } catch (error: any) {
+    const { errorMessage, email } = error.response.data;
+    return { errorMessage, email, isError: true };
   }
 };
 

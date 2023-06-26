@@ -8,6 +8,7 @@ import {
 } from "../api/routes/registration";
 import connectToMongoDB from "../db/mongoDB";
 import loginRouter from "../api/routes/login";
+import testRouter from "../api/routes/test";
 
 dotenv.config({ path: "../.env" });
 
@@ -21,6 +22,7 @@ app.use("", registrationRouter);
 app.use("", loginRouter);
 app.use("", usernameValidation);
 app.use("", emailValidation);
+app.use("", testRouter);
 
 connectToMongoDB(dbURL);
 
